@@ -5,7 +5,11 @@ module QueBus
     end
 
     initializer "set subscription_namespace" do
-      QueBus.subscription_namespace = Rails.application.class.parent_name
+      if Rails::VERSION::MAJOR >= 6
+        QueBus.subscription_namespace = Rails.application.class.module_parent_name
+      else
+        QueBus.subscription_namespace = Rails.application.class.parent_name
+      end
     end
   end
 end
