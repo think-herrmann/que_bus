@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "dotenv"
 
 
-  spec.add_dependency "que", "~> 0.14.2"
+  spec.add_dependency "que", "0.14.2"
   spec.add_dependency "activerecord"
   spec.add_dependency "pg"
 
