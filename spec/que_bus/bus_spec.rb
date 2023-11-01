@@ -2,8 +2,20 @@ require 'spec_helper'
 
 describe QueBus::Bus do
   describe "when we create a new bus" do
-    let(:bus) {QueBus::Bus.new }
+
+    it "initializes with default priority 100" do
+      bus = QueBus::Bus.new
+      expect(bus.priority).must_equal 100
+    end
+
+    it "allows setting a specific priority" do
+      bus = QueBus::Bus.new(1)
+      expect(bus.priority).must_equal 1
+    end
+
     describe "and subscribe the bus" do
+      let(:bus) {QueBus::Bus.new }
+
       let(:result) {bus.subscribe params}
       let(:params) { {} }
 
@@ -21,6 +33,7 @@ describe QueBus::Bus do
     end
 
     describe "when we subscribe to the bus with a block and publish a message" do
+      let(:bus) {QueBus::Bus.new }
       before do
         bus.subscribe do
           @event_recieved = true
@@ -34,6 +47,7 @@ describe QueBus::Bus do
     end
 
     describe "when we subscribe to the bus with a block that takes an argument and publish a message" do
+      let(:bus) {QueBus::Bus.new }
       before do
         bus.subscribe do |msg|
           @event_recieved = msg[:value]
@@ -47,6 +61,8 @@ describe QueBus::Bus do
     end
 
     describe "when we subscribe to the bus twice with a block and publish a message" do
+      let(:bus) {QueBus::Bus.new }
+
       before do
         bus.subscribe do
           @event1_recieved = true
@@ -65,6 +81,7 @@ describe QueBus::Bus do
     end
 
     describe "when we subscribe in one bus and publish in a different bus" do
+      let(:bus) {QueBus::Bus.new }
       before do
         bus.subscribe do
           @event_recieved = true
@@ -79,6 +96,7 @@ describe QueBus::Bus do
     end
 
     describe "when we subscribe to a specific channel" do
+      let(:bus) {QueBus::Bus.new }
       before do
         bus.subscribe(:topics=> :foo) do
           @foo_event_called = true
@@ -86,6 +104,7 @@ describe QueBus::Bus do
       end
 
       describe "and we publish to the same channel" do
+        let(:bus) {QueBus::Bus.new }
         before do
           bus.publish("hey foo", :topic => :foo)
         end
@@ -96,6 +115,7 @@ describe QueBus::Bus do
       end
 
       describe "and we publish on a different channel" do
+        let(:bus) {QueBus::Bus.new }
         before do
           bus.publish("hey foo",:topic=> :bar)
         end
@@ -106,6 +126,7 @@ describe QueBus::Bus do
       end
 
       describe "and we publish with no defined channel" do
+        let(:bus) {QueBus::Bus.new }
         before do
           bus.publish("hey foo")
         end
@@ -117,6 +138,8 @@ describe QueBus::Bus do
     end
 
     describe "when we subscribe to all channels" do
+      let(:bus) {QueBus::Bus.new }
+
       before do
         bus.subscribe(:topics=> "all") do
           @foo_event_called = true
@@ -124,6 +147,8 @@ describe QueBus::Bus do
       end
 
       describe "and we publish on any channel" do
+        let(:bus) {QueBus::Bus.new }
+
         before do
           bus.publish("hey foo",:topic=> :bar)
         end
@@ -135,6 +160,8 @@ describe QueBus::Bus do
     end
 
     describe "when we subscribe to the bus with a class" do
+      let(:bus) {QueBus::Bus.new }
+
       before do
         require 'fixtures/job_class'
         @state = {}

@@ -14,7 +14,7 @@ end
 ActiveRecord::Base.establish_connection()
 Que.connection = ActiveRecord
 
-class MiniTest::Spec
+class Minitest::Spec
   def eventually(opts = {})
     interval = opts.delete(:interval) || 0.001
     timeout = opts.delete(:timeout) || 1
@@ -23,9 +23,9 @@ class MiniTest::Spec
       sleep interval
       total = total + interval
       yield
-    rescue MiniTest::Assertion => e
+    rescue Minitest::Assertion => err
       retry if total < timeout
-      raise e total >= timeout
+      raise err if total >= timeout
     end
   end
 

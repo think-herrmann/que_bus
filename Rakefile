@@ -1,5 +1,6 @@
 #!/usr/bin/env rake
 require "bundler/gem_tasks"
+require "byebug"
 
 require 'rake/testtask'
 require 'que_bus'

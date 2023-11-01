@@ -1,8 +1,13 @@
 
 module QueBus
   class Bus
+    attr_reader :priority
     def subscribers
       Subscriber.all
+    end
+
+    def initialize(priority = 100)
+      @priority = priority
     end
 
     def publish(message, opts={})
@@ -14,6 +19,7 @@ module QueBus
         options = (opts || {}).clone
         options[:job_class] = sub.job_class
         options[:queue] = sub.subscriber_id
+        options[:priority] = priority
         queue_job(sub, message, options)
       end
     end
