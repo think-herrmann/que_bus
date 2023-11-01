@@ -1,7 +1,8 @@
 
 module QueBus
   class Bus
-    attr_reader :priority
+    attr_accessor :priority
+
     def subscribers
       Subscriber.all
     end
