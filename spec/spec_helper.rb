@@ -14,7 +14,7 @@ end
 ActiveRecord::Base.establish_connection()
 Que.connection = ActiveRecord
 
-class MiniTest::Spec
+class Minitest::Spec
   before :each do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start

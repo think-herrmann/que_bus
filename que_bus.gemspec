@@ -6,8 +6,8 @@ require 'que_bus/version'
 Gem::Specification.new do |spec|
   spec.name          = "que_bus"
   spec.version       = QueBus::VERSION
-  spec.authors       = ["Andrew Swerlick"]
-  spec.email         = ["andrew.swerlick@gmail.com"]
+  spec.authors       = ["Andrew Swerlick", "James Naadjie"]
+  spec.email         = ["andrew.swerlick@gmail.com", "james.naadjie@gmail.com"]
   spec.summary       = %q{An event bus based on the que queing framework}
   spec.description   = %q{An event bus based on the que queing framework}
   spec.homepage      = ""
@@ -18,12 +18,13 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.6"
+  spec.add_development_dependency "bundler", "~> 2.1.4"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "byebug"
   spec.add_development_dependency "database_cleaner"
   spec.add_development_dependency "evented-spec"
   spec.add_development_dependency "dotenv"
+  spec.add_development_dependency "minitest", ">= 5.20.0"
 
 
   spec.add_dependency "que", "~> 0.14.3"
