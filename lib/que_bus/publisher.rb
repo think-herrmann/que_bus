@@ -1,7 +1,6 @@
 module QueBus
   module Publisher
     def publish(topic, message)
-      publisher.priority = message.fetch(:priority, 100)
       publisher.publish(message, topic: topic)
       messages << [topic, message]
     end

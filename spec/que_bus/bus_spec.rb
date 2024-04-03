@@ -2,17 +2,6 @@ require 'spec_helper'
 
 describe QueBus::Bus do
   describe "when we create a new bus" do
-
-    it "initializes with default priority 100" do
-      bus = QueBus::Bus.new
-      expect(bus.priority).must_equal 100
-    end
-
-    it "allows setting a specific priority" do
-      bus = QueBus::Bus.new(1)
-      expect(bus.priority).must_equal 1
-    end
-
     describe "and subscribe the bus" do
       let(:bus) {QueBus::Bus.new }
 

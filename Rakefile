@@ -32,6 +32,7 @@ end
 
 task :default => "test:default"
 
+desc "Setup Gem for local testing"
 task :setup do
   if File.exist?('.env')
     puts 'This will overwrite your existing .env file'
@@ -61,6 +62,7 @@ task :setup do
 end
 
 namespace :db do
+  desc "Load database settings from .env file"
   task :load_db_settings do
     require 'active_record'
     unless ENV['DATABASE_URL']
@@ -69,14 +71,17 @@ namespace :db do
     end
   end
 
+  desc "Drop database from ENV['DATABASE_NAME'] env variable"
   task :drop => :load_db_settings do
     %x{ dropdb #{ENV['DATABASE_NAME']} }
   end
 
+  desc "create database from ENV['DATABASE_NAME'] env variable"
   task :create => :load_db_settings do
     %x{ createdb #{ENV['DATABASE_NAME']} }
   end
 
+  desc "migrate database"
   task :migrate => :load_db_settings do
     ActiveRecord::Base.establish_connection()
     Que.connection = ActiveRecord

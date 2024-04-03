@@ -130,6 +130,17 @@ a class that contains the block passed to the subscribe method. When the develop
 QueBus loops through all the subscribers and creates new jobs for each one that has subscribed to
 the relevant topic. The underlying Que library executes those jobs.
 
+## local development
+
+Run bundle install to install bundle
+
+Create .env file: `bundle exec rake setup`
+Create test database: `bundle exec rake db:create`
+Run migration: `bundle exec rake db:migrate`
+
+Run tests: `bundle exec rake test:sync`
+
+bundle exec rake test:sync to run specs
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/que_bus/fork )
