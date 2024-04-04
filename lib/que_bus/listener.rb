@@ -7,7 +7,7 @@ module QueBus
         job = Class.new(Que::Job) do
           def run(*args)
             ActiveRecord::Base.transaction do
-              method = self.class.parent.get_execution_method
+              method = self.class.module_parent.get_execution_method
               event_id = args[1]["event_id"] || args[1][:event_id]
               final_args = case args[0]
                 when Hash
@@ -15,7 +15,7 @@ module QueBus
                 else
                   [args[0], args[1]["topic"], event_id]
                 end
-              self.class.parent.send(method, final_args)
+              self.class.module_parent.send(method, final_args)
               destroy
             end
           end

@@ -1,3 +1,3 @@
 module QueBus
-  VERSION = "0.0.2"
+  VERSION = "0.0.11"
 end
