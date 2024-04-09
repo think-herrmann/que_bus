@@ -27,7 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "minitest", ">= 5.20.0"
 
 
-  # spec.add_dependency "que", "~> 0.14.3"
+  spec.add_dependency "que", "~> 0.14.3"
   spec.add_dependency "activerecord"
   spec.add_dependency "pg"
 
