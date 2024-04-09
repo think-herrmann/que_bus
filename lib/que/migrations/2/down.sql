@@ -1,1 +1,0 @@
-ALTER TABLE que_jobs ALTER COLUMN priority SET DEFAULT 1;
